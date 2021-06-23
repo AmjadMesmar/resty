@@ -10,7 +10,7 @@ class Results extends React.Component {
             <React.Fragment>
                 
                     {
-                        <JSONPretty id="json-pretty" data={this.props.results} theme={JSONPrettyMon}></JSONPretty>
+                        <JSONPretty id="results" data={this.props.results} theme={JSONPrettyMon}></JSONPretty>
                     }
 
             </React.Fragment>

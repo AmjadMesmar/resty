@@ -14,4 +14,9 @@ h4{
   color: white;
 }
 
-
+#show-data{
+display: grid;
+grid-template-columns: 1fr 1fr;
+width: 80em;
+max-height: 50em;
+}
