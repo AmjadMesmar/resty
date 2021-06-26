@@ -1,5 +1,6 @@
 import React from 'react';
 import './form.scss'
+const axios = require('axios');
 let ls = require('local-storage');
 
 let fetchMethod = 'GET';
@@ -66,13 +67,16 @@ class Form extends React.Component {
             this.props.handler(results);
         }
         else {
+            let bodyText = document.getElementById('inputBody');
+            let body = bodyText.value;
+            let results = await axios({
+              method: `${fetchMethod}`,
+              url: `${urlValue}`,
+              data: JSON.parse(body),
+            });
+            this.props.handler(results.data, 0, this.state.flag);
+          }
 
-
-            let results = { method: fetchMethod, url: urlValue };
-
-            this.props.handler(results);
-
-        }
     }
     render() {
         return (
@@ -86,7 +90,7 @@ class Form extends React.Component {
                         <br />
 
                         <label>Body :
-                            <textarea type="text" name="body" id="input-body" placeholder="Input Body here" />
+                            <textarea type="text" name="body" id="inputBody" placeholder="Input Body here"></textarea>
                         </label>
                         <br />
                         <label>Method :
