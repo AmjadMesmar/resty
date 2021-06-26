@@ -7,39 +7,25 @@ form{
     border: solid rgb(65, 77, 187) 3px;
     color: white;
     width: 50%;
+    height: 200px;
     margin: auto;
     border-radius: 7px;
   
   }
-  form label{
-    margin-right: 2px;
-    margin:auto;
+ 
+  #input-body{
+    overflow: scroll;
+    height: 50%;
+    width: 100%;
   }
-  form input {
-    height:20px;
-    margin: auto;
+
+  .method-button {
+    margin: 10px 5px;
+    height: 50ps;
   }
-  
-  #click-btn {
-  
-    position: relative;
-    top: 50px;
-    right:420px;
-    padding: 2px 5px;
-    margin-right: 10px;
-    background-color: rgb(65, 77, 187);
-    box-shadow: none;
-  }
-  
-  #go-btn {
-  
-    margin-left: 10px;
-    padding: 6px;
-    width: 130px;
-    position: relative;
-    left: 200px;
-    box-shadow: 1px 1px;
-    margin: auto;
-    background-color: rgb(179, 183, 220);
-  
+
+  .method-button:focus {
+
+    color: rgb(0, 255, 0);
+    background-color: rgb(36, 33, 33);
   }

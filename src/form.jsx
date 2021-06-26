@@ -1,59 +1,101 @@
 import React from 'react';
 import './form.scss'
-let fetchMethod='';
-let urlValue='';
+let ls = require('local-storage');
+
+let fetchMethod = 'GET';
+let urlValue = 'https://swapi.dev/api/people';
+let lsArray = [];
+
+
+function getHistory() {
+    let checked = ls.get('History');
+    if (checked) {
+        lsArray = checked;
+    }
+}
+getHistory();
+
+function saveHistory() {
+    let check = ls.get('History');
+    if (check) {
+        ls.set('History', lsArray);
+        return;
+    }
+    else {
+        let lsValue = lsArray.pop();
+        lsArray.length = 0;
+        lsArray.push(lsValue);
+        ls.set('History', lsArray);
+        return;
+    }
+}
 
 class Form extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state ={
-            method:"",
-            url:""
+        this.state = {
+            method: "",
+            url: ""
         }
     }
-    urlFetcher = e =>{
+    urlFetcher = e => {
         urlValue = e.target.value;
     }
     methodFetcher = e => {
         e.preventDefault()
-      fetchMethod =e.target.value;
+        fetchMethod = e.target.value;
         return fetchMethod;
     }
-    buttonHandler = async e =>{
+    buttonHandler = async e => {
         e.preventDefault();
-        if(fetchMethod === 'GET'){
-        let allocatedData = await fetch(urlValue);
-        let data = await allocatedData.json();
-        console.log('.............. ', data);
-        const results = {
-        Headers: { 'Content-Type': 'application/json' },
-        Response:data};
-        console.log("🚀 ~ file: form.jsx ~ line 30 ~ Form ~ results", results)
 
-        this.props.handler(results);
+        let lsResult = { method: fetchMethod, url: urlValue };
+        lsArray.push(lsResult);
+        saveHistory();
+
+        if (fetchMethod === 'GET') {
+
+            let allocatedData = await fetch(urlValue);
+            let data = await allocatedData.json();
+
+            const results = {
+                Headers: { 'Content-Type': 'application/json' },
+                Response: data
+            };
+
+            this.props.handler(results);
         }
-    else{
-    
-    // this.setState({ method:fetchMethod ,url:urlValue });
+        else {
 
-    let results = {method:fetchMethod , url:urlValue};
 
-    this.props.handler(results);
+            let results = { method: fetchMethod, url: urlValue };
 
+            this.props.handler(results);
+
+        }
     }
-    }
-    render(){
+    render() {
         return (
             <main>
-                <form action="">
-                <label htmlFor="">URL :</label> 
-                <input type="url" placeholder="Input URL here" onChange={this.urlFetcher} /> 
-                <button onClick={this.buttonHandler} id="go-btn">Go</button> 
-                
-            <button value="GET" onClick ={this.methodFetcher} id="click-btn"> Get</button>
-            <button value="POST"  onClick ={this.methodFetcher} id="click-btn"> Post</button>
-            <button value="PUT"  onClick ={this.methodFetcher}id="click-btn"> Put</button>
-            <button value="DELETE"  onClick ={this.methodFetcher}id="click-btn"> Delete</button>
+                <form id="form">
+
+                    <label>URL :
+                        <input type="url" placeholder="Input URL here" onChange={this.urlFetcher} required aria-required="true" pattern="^(https?://)?([a-zA-Z0-9]([a-zA-ZäöüÄÖÜ0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}$" />
+                        <button onClick={this.buttonHandler} id="go-btn">Go</button>
+
+                        <br />
+
+                        <label>Body :
+                            <textarea type="text" name="body" id="input-body" placeholder="Input Body here" />
+                        </label>
+                        <br />
+                        <label>Method :
+                            <button value="GET" onClick={this.methodFetcher} id="click-btn" className="method-button"> Get</button>
+                            <button value="POST" onClick={this.methodFetcher} id="click-btn" className="method-button"> Post</button>
+                            <button value="PUT" onClick={this.methodFetcher} id="click-btn" className="method-button"> Put</button>
+                            <button value="DELETE" onClick={this.methodFetcher} id="click-btn" className="method-button"> Delete</button>
+                        </label>
+                    </label>
 
                 </form>
             </main>

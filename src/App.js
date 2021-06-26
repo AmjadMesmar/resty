@@ -1,43 +1,42 @@
 import React from 'react';
 import './App.scss';
-import Header from './header'
-import Form from './form'
-import Results from './results'
+import { BrowserRouter as Router, HashRouter, MemoryRouter } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import Home from './home'
 import History from './history'
+import Help from './help'
+import Header from './header'
 import Footer from './footer'
 
 
 class App extends React.Component {
-  constructor(props) {
-      super(props);
+    constructor(props) {
+        super(props);
 
-      this.state = {
-          results: [],
-          count: 0
-      }
-  }
+        this.state = {
+            results: [],
+            count: 0
+        }
+    }
 
-  handleForm = (results, count) => {
-      console.log('from the parent handler', count);
-      this.setState({ results, count });
-  }
-
- render() {
-  return (
-    <React.StrictMode>
-   <div>
-    <Header />
-    <Form handler={this.handleForm} />
-    <div id="show-data">
-    <History results={this.state.results} />
-    <Results results={this.state.results} />
-    </div>
-    <Footer />
-
-    </div>
-    </React.StrictMode>
-   );
-}
+    handleForm = (results, count) => {
+        console.log('from the parent handler', count);
+        this.setState({ results, count });
+    }
+    Switch
+    render() {
+        return (
+            <Router>
+                <Header />
+                <Switch>
+                    <Route exact path="/"  > <Home />  </Route>
+                    <Route exact path="/help"   > <Help /> </Route>
+                    <Route exact path="/history"  > <History /> </Route>
+                </Switch>
+                <Footer />
+            </Router>
+        );
+    }
 }
 
 export default App;

@@ -1,22 +1,26 @@
 import React from 'react'
 import './history.scss'
-import JSONPretty from 'react-json-pretty';
-import 'react-json-pretty/themes/acai.css';
-let JSONPrettyMon = require('react-json-pretty/dist/acai');
+let ls = require('local-storage');
 
-class History extends React.Component {
 
-    render() {
-        return (
-            <React.Fragment>
-                
-                    {
-                        <JSONPretty id="history" data={this.props.results} theme={JSONPrettyMon}></JSONPretty>
-                    }
+const History = () => {
 
-            </React.Fragment>
-        )
-    }
-}
+    let history = ls.get('History');
+
+    return (
+        <ul id="history">
+
+            {
+                    
+                             history?  history.map((ele,idx) =>{
+                               return(<li key={idx}> <span className="method">{ele.method}</span>  <button id="button-url" className="url">{ele.url}</button></li>)
+                               }):null
+
+        
+            }
+
+        </ul> 
+    );
+};
 
 export default History;
