@@ -1,4 +1,4 @@
-# resty
+# RESTy
 
 A simple React web app with a form that check which REST method has been choosen by the user and print it with the inputted URL.
 
