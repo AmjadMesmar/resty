@@ -1,6 +1,6 @@
 import React from 'react';
 import './help.scss';
-import { BrowserRouter as Router, HashRouter, MemoryRouter } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.scss';
-import { BrowserRouter as Router, HashRouter, MemoryRouter } from 'react-router-dom';
+import { BrowserRouter as Router} from 'react-router-dom';
 import { Route, Switch } from 'react-router-dom';
 import Home from './home'
-import History from './history'
+import HistoryPage from './historyPage'
 import Help from './help'
 import Header from './header'
 import Footer from './footer'
@@ -31,7 +31,7 @@ class App extends React.Component {
                 <Switch>
                     <Route exact path="/"  > <Home />  </Route>
                     <Route exact path="/help"   > <Help /> </Route>
-                    <Route exact path="/history"  > <History /> </Route>
+                    <Route exact path="/history"  > <HistoryPage /> </Route>
                 </Switch>
                 <Footer />
             </Router>
