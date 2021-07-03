@@ -5,11 +5,12 @@ import Loader from './loader'
 const axios = require('axios');
 let ls = require('local-storage');
 
-let fetchMethod;
+let fetchMethod = 'GET';
 let urlValue;
-export let { newEntry } = true;
+ let newEntry = true;
+ console.log("🚀 ~ file: form.jsx ~ line 11 ~ newEntry form start", newEntry)
 // let urlRegex = new Regex();
-export let { lsArray } = [];
+ let lsArray  = [];
 
 
 export function getHistory() {
@@ -76,9 +77,9 @@ class Form extends React.Component {
         //     return;
         // }
 
-        if (newEntry) {
+        if (newEntry === true) {
             lsArray.push(lsResult);
-            console.log("🚀 ~ file: form.jsx ~ line 55 ~ Form ~ fetchMethod", fetchMethod)
+            console.log("🚀 ~ file: form.jsx ~ line 11 ~ newEntry form start", newEntry)
             saveHistory();
         }
         this.setState({ loading: true });
@@ -123,6 +124,7 @@ class Form extends React.Component {
     }
 
     render() {
+
         const mystyle = {
             position: "relative",
             left: 400,
@@ -163,3 +165,4 @@ class Form extends React.Component {
 };
 
 export default Form;
+export {newEntry,lsArray};

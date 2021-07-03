@@ -17,7 +17,6 @@ class Home extends React.Component {
   }
 
   handleForm = (results, count) => {
-      console.log('from the parent handler', count);
       this.setState({ results, count });
   }
 

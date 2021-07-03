@@ -8,6 +8,7 @@ import 'react-json-pretty/themes/monikai.css';
 let axios = require('axios');
 let { lsArray, getHistory } = require('./form');
 let JSONPrettyMon = require('react-json-pretty/dist/monikai');
+
 let ls = require('local-storage');
 
 const HistoryPage = () => {
