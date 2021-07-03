@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import { BrowserRouter as Router, HashRouter, MemoryRouter } from 'react-router-dom';
+import { BrowserRouter as Router} from 'react-router-dom';
 import Form from './form'
 import Results from './results'
 import History from './history'
