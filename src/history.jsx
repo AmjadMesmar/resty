@@ -30,6 +30,8 @@ console.log("🚀 ~ file: history.jsx ~ line 26 ~ getHistoryInput ~ lsArray", ls
     body.innerHTML = historyObject.body;
     method.click();
     method.focus();
+    console.log("🚀 ~ file: history.jsx ~ line 34 ~ getHistoryInput ~ newEntry", newEntry)
+
     newEntry = false;
     console.log("🚀 ~ file: history.jsx ~ line 34 ~ getHistoryInput ~ newEntry", newEntry)
 
